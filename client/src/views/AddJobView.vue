@@ -5,7 +5,6 @@ import { useToast } from "vue-toastification";
 import axios from "axios";
 import { apiUrl } from "@/util";
 
-console.log(apiUrl);
 const form = reactive({
   type: "Full-Time",
   title: "",
@@ -41,7 +40,7 @@ const handleSubmit = async () => {
     const { data } = await axios.post(`${apiUrl}/api/jobs/create`, newJob);
     console.log(data);
     toast.success("Job Added Successfully");
-    router.push(`/jobs/${data.id}`);
+    router.push(`/jobs/${data._id}`);
   } catch (error) {
     console.error("Error fetching job", error);
     toast.error("Job Was Not Added");
