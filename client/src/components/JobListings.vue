@@ -4,6 +4,7 @@ import JobListing from "./JobListing.vue";
 import { reactive, defineProps, onMounted } from "vue";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 import axios from "axios";
+import { apiUrl } from "@/util";
 
 defineProps({
   limit: Number,
@@ -17,10 +18,10 @@ const state = reactive({
   jobs: [],
   isLoading: true,
 });
-
 onMounted(async () => {
   try {
-    const response = await axios.get("http://localhost:8000/api/jobs");
+    const response = await axios.get(`${apiUrl}/api/jobs`);
+    console.log(response.data);
     state.jobs = response.data;
     console.log(response.data);
   } catch (error) {

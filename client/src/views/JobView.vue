@@ -5,6 +5,7 @@ import { reactive, onMounted } from "vue";
 import { useRoute, RouterLink, useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
 import axios from "axios";
+import { apiUrl } from "@/util";
 
 const route = useRoute();
 const router = useRouter();
@@ -21,7 +22,7 @@ const deleteJob = async () => {
   try {
     const confirm = window.confirm("Are you sure you want to delete this job?");
     if (confirm) {
-      await axios.delete(`http://localhost:8000/api/jobs/${jobId}`);
+      await axios.delete(`${apiUrl}/api/jobs/${jobId}`);
       toast.success("Job Deleted Successfully");
       router.push("/jobs");
     }
